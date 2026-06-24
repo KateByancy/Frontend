@@ -16,13 +16,16 @@ export default function LoginPage() {
   };
 
   const handleGoogleAuth = () => {
-    // Modified: Instead of pushing directly to /home, trigger custom integration placeholder logic
     alert("Google Authentication initializing... (Ready to link your OAuth provider API here!)");
   };
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-slate-100 py-8">
-      <div className="w-full max-w-[412px] h-[892px] bg-gradient-to-b from-[#005c9e] via-[#003c73] to-[#0a192f] rounded-[40px] shadow-2xl overflow-hidden border-8 border-slate-900 flex flex-col relative select-none font-sans text-white">
+      {/* Hidden default browser scrollbars using inline style fallback */}
+      <div 
+        className="w-full max-w-[412px] h-[892px] bg-gradient-to-b from-[#005c9e] via-[#003c73] to-[#0a192f] rounded-[40px] shadow-2xl overflow-hidden border-8 border-slate-900 flex flex-col relative select-none font-sans text-white"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
         
         {/* Universal Simulated Status Bar */}
         <div className="w-full px-6 pt-3 pb-2 flex justify-between items-center text-xs font-semibold bg-white text-slate-900 z-50">
@@ -39,8 +42,11 @@ export default function LoginPage() {
           </Link>
         </div>
 
-        {/* Content Viewport */}
-        <div className="flex-1 overflow-y-auto px-6 pt-16 pb-8 flex flex-col justify-between">
+        {/* Content Viewport - Side Scrollbar Removed */}
+        <div 
+          className="flex-1 overflow-y-auto px-6 pt-16 pb-8 flex flex-col justify-between [&::-webkit-scrollbar]:hidden"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
           
           {/* Brand Header */}
           <div className="text-center mt-4 flex flex-col items-center">

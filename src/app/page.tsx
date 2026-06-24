@@ -1,12 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { Home, LayoutGrid, Calendar, MessageSquare, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function LandingPage() {
-  const router = useRouter();
-
   return (
     <div className="mx-auto my-8 w-full max-w-[412px] h-[892px] bg-gradient-to-b from-[#0a2540] via-[#005c9e] to-[#003366] rounded-[40px] shadow-2xl overflow-hidden border-8 border-slate-900 flex flex-col relative select-none font-sans text-white">
       
@@ -18,8 +15,11 @@ export default function LandingPage() {
         </div>
       </div>
 
-      {/* Scrollable Viewport Body Content */}
-      <div className="flex-1 overflow-y-auto pb-6 custom-scrollbar">
+      {/* Scrollable Viewport Body Content - Hides Scrollbar */}
+      <div 
+        className="flex-1 overflow-y-auto pb-6 [&::-webkit-scrollbar]:hidden"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
         
         {/* 1. Brand Hero Panel Section */}
         <div className="relative w-full h-[240px] bg-slate-800 flex flex-col items-center justify-center px-4 text-center overflow-hidden">
@@ -32,7 +32,6 @@ export default function LandingPage() {
             </div>
             <p className="text-[11px] font-serif uppercase tracking-widest text-sky-200">The Air Authority Center</p>
             
-            {/* Landing Page Hero Segment Action Buttons */}
             <div className="grid grid-cols-2 gap-3 pt-2">
               <Link href="/login" className="bg-[#005c9e] hover:bg-sky-600 text-white font-sans text-[10px] font-bold uppercase tracking-widest py-2.5 rounded-lg border border-sky-400 text-center shadow-md transition-all">
                 Consult
@@ -74,7 +73,7 @@ export default function LandingPage() {
           <p className="text-center text-[10px] font-bold uppercase tracking-widest text-sky-200 pt-1">Service Excellence</p>
         </div>
 
-        {/* 4. Modular Four-Card Framework Grid */}
+        {/* 4. Modular Grid */}
         <div className="grid grid-cols-2 gap-3 px-4 pb-6 text-slate-800">
           <div className="bg-white p-4 rounded-2xl flex flex-col items-center justify-center text-center shadow-md border border-sky-100">
             <div className="w-8 h-8 bg-slate-50 rounded-xl flex items-center justify-center text-slate-600 border mb-2">
@@ -105,14 +104,14 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {/* 5. Direct Action Call-to-Action Anchor Button (Rerouted directly to Login Page) */}
+        {/* 5. CTA Button */}
         <div className="px-4 pb-4">
           <Link href="/login" className="block w-full bg-[#161b33] hover:bg-[#20274a] border border-white/10 text-white font-sans text-center text-[11px] font-bold uppercase tracking-widest py-3.5 rounded-xl shadow-lg transition-all active:scale-[0.98]">
             Ready To Begin?
           </Link>
         </div>
 
-        {/* 6. Legal Footnote Row & Media Social Icon Layout Hooks */}
+        {/* 6. Legal Footnote Row */}
         <div className="bg-black/20 w-full py-6 px-4 text-center border-t border-white/5 space-y-4">
           <div className="flex justify-center items-center gap-4 text-sm opacity-80">
             <span className="cursor-pointer hover:opacity-100 transition-opacity">📸</span>

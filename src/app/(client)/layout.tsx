@@ -17,13 +17,10 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   ];
 
   return (
-    /* Outer alignment shell to position the phone layout dead center in the browser */
     <div className="min-h-screen w-full flex items-center justify-center bg-slate-100 py-8">
-      
-      {/* Centered Simulated Mobile Viewport Frame Container */}
       <div className="w-full max-w-[412px] h-[892px] bg-slate-50 rounded-[40px] shadow-2xl overflow-hidden border-8 border-slate-900 flex flex-col relative select-none font-sans">
         
-        {/* Universal Simulated Status Bar */}
+        {/* Status Bar */}
         <div className="w-full px-6 pt-3 pb-2 flex justify-between items-center text-xs font-semibold bg-white text-slate-900 z-50">
           <span>9:41</span>
           <div className="flex items-center gap-1.5">
@@ -31,8 +28,11 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
           </div>
         </div>
 
-        {/* Main Viewport Content Deck */}
-        <div className="flex-1 overflow-y-auto pb-24">
+        {/* Viewport Content - Hides scrollbar globally */}
+        <div 
+          className="flex-1 overflow-y-auto pb-24 [&::-webkit-scrollbar]:hidden"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
           {children}
         </div>
 
@@ -59,7 +59,6 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
           })}
         </nav>
       </div>
-
     </div>
   );
 }
