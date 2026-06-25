@@ -16,41 +16,40 @@ export default function LoginPage() {
     setError("");
     setLoading(true);
 
-    setTimeout(() => {
-      // 1. Admin Routing Account
-      if (email === "marc@gmail.com" && password === "12345678") {
+    // Hardcoded credentials check
+    if (email === "marc@gmail.com" && password === "12345678") {
+      // Simulate a quick network lag for a realistic feel
+      setTimeout(() => {
         router.push("/dashboard");
-      } 
-      // 2. Client Routing Account (Routes directly to your (client)/home folder)
-      else if (email === "client@gmail.com" && password === "client123") {
-        router.push("/home");
-      } 
-      else {
-        setLoading(false);
-        setError("Invalid email or password. Please try again.");
-      }
-    }, 800);
+      }, 800);
+    } else {
+      setLoading(false);
+      setError("Invalid email or password. Please try again.");
+    }
   };
 
   return (
     <div className="min-h-screen bg-slate-900 flex justify-center items-center p-4">
       <div className="w-full max-w-[400px] bg-white rounded-3xl shadow-xl p-8 space-y-6 border border-slate-100">
         
+        {/* Header branding */}
         <div className="text-center space-y-2">
           <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center text-white font-black text-2xl mx-auto shadow-md">
             M
           </div>
-          <h1 className="text-xl font-extrabold text-slate-800 tracking-tight">MARC Portal</h1>
-          <p className="text-xs text-slate-400">Sign in to access your dashboard</p>
+          <h1 className="text-xl font-extrabold text-slate-800 tracking-tight">MARC Admin</h1>
+          <p className="text-xs text-slate-400">Sign in to access your dashboard management panel</p>
         </div>
 
+        {/* Error message block */}
         {error && (
-          <div className="bg-rose-50 border border-rose-150 rounded-xl p-3 flex items-center gap-2.5 text-rose-700">
+          <div className="bg-rose-50 border border-rose-150 rounded-xl p-3 flex items-center gap-2.5 text-rose-700 animate-in fade-in slide-in-from-top-1 duration-200">
             <AlertCircle className="w-4 h-4 shrink-0" />
             <span className="text-xs font-semibold">{error}</span>
           </div>
         )}
 
+        {/* Login Form */}
         <form onSubmit={handleLogin} className="space-y-4">
           <div className="space-y-1.5">
             <label className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block px-0.5">
@@ -63,7 +62,7 @@ export default function LoginPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter email address"
+                placeholder="admin@example.com"
                 className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 pl-10 pr-4 text-xs font-medium text-slate-800 focus:outline-none focus:border-blue-500 transition-colors"
               />
             </div>
@@ -89,19 +88,11 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl text-xs transition-colors shadow-sm disabled:opacity-50 tracking-wide"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl text-xs transition-colors shadow-sm disabled:opacity-50 tracking-wide pt-4"
           >
             {loading ? "Signing in..." : "Log In"}
           </button>
         </form>
-
-        <div className="pt-2 text-center bg-slate-50 p-2.5 rounded-xl border border-dashed border-slate-200">
-          <p className="text-[10px] text-slate-400 leading-relaxed">
-            <span className="font-semibold text-slate-700 block">Quick Test Credentials:</span>
-            Admin: marc@gmail.com (12345678) <br />
-            Client: client@gmail.com (client123)
-          </p>
-        </div>
 
       </div>
     </div>
